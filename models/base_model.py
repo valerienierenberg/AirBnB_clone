@@ -5,7 +5,7 @@ all common attributes/methods for other classes """
 import json
 import uuid
 from datetime import datetime
-
+from models import storage
 
 class BaseModel:
     """Base Class
@@ -24,6 +24,7 @@ class BaseModel:
         else:  # if kwargs is empty
             self.id = str(uuid.uuid4())  # create id and created_at
             self.created_at = self.updated_at = datetime.now()
+            storage.new()
 
     def __str__(self):
         """ __str method:
@@ -39,6 +40,7 @@ class BaseModel:
         Args: self
         """
         self.updated_at = datetime.now()  # updates time to be current time
+        storage.save()
 
     def to_dict(self):
         """ to_dict method:
