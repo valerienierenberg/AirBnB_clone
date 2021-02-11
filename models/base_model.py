@@ -11,11 +11,19 @@ class BaseModel:
     """Base Class
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """__init method
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = self.updated_at = datetime.now()
+        if len(kwargs) != 0:
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    setattr(self, key, value)
+                elif key == "created_at" or key == "updated_at":
+                    time = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, key, time)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = self.updated_at = datetime.now()
 
     def __str__(self):
         """ __str method:
