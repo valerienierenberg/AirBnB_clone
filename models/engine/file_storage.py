@@ -5,6 +5,7 @@ file and deserializes JSON file to instances
 
 
 import json
+from os.path import exists
 
 class FileStorage:
     """ class FileStorage """
@@ -23,13 +24,14 @@ class FileStorage:
 
     def save(self):
         """ serializes __objects to the JSON file """
+        empty_dict = {}
+        for key, value in self.__objects.items():
+            empty_dict[key] = value.to_dict()
         with open(self.__file_path, "w") as file:
-            json.dump(__objects, file)
+            json.dump(empty_dict, file)
 
     def reload(self):
         """ deserializes the JSON file to __objects """
-        if self.__file_path is None:
-            return
-        else:
+        if exists(self.__file_path):
             with open(self.__file_path, "r") as file:
-                json.loads(file.read())
+                content = json.load(file)
