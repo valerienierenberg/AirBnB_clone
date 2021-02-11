@@ -16,11 +16,11 @@ class BaseModel:
         """
         if len(kwargs) != 0:  # as long as it's not empty
             for key, value in kwargs.items():  # iterating through dictionary
-                if key != "__class__":  # class should not be added as attr
-                    setattr(self, key, value)  # setting attr for other keys
-                elif key == "created_at" or key == "updated_at":  # cnvrt to dt
+                if key == "created_at" or key == "updated_at":  # cnvrt to dt
                     time = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                     setattr(self, key, time)  # sets attribute
+                elif key != "__class__":  # class should not be added as attr
+                    setattr(self, key, value)  # setting attr for other keys
         else:  # if kwargs is empty
             self.id = str(uuid.uuid4())  # create id and created_at
             self.created_at = self.updated_at = datetime.now()
