@@ -1,11 +1,12 @@
 #!/usr/bin/python3
-""" This module contains a class FileStorage that serializes instances to a JSON
-file and deserializes JSON file to instances
+""" This module contains a class FileStorage that serializes
+instances to a JSON file and deserializes JSON file to instances
 """
 
 
 import json
 from os.path import exists
+
 
 class FileStorage:
     """ class FileStorage """
@@ -35,3 +36,9 @@ class FileStorage:
         if exists(self.__file_path):
             with open(self.__file_path, "r") as file:
                 content = json.load(file)
+                print(content)
+
+# we need to figure out how to store ^content into __objects by <class name>.id
+#        self.__objects = {}  # "__objects will store by <class name>.id"
+#        for key, value in content.items():
+#            self.__objects[key] = content[value]
