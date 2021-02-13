@@ -5,7 +5,14 @@ instances to a JSON file and deserializes JSON file to instances
 
 
 import json
-from os.path import exists
+# from os.path import exists
+# from models.base_model import BaseModel
+# from models.amenity import Amenity
+# from models.city import City
+# from models.place import Place
+# from models.review import Review
+# from models.state import State
+# from models.user import User
 
 
 class FileStorage:
@@ -33,12 +40,17 @@ class FileStorage:
 
     def reload(self):
         """ deserializes the JSON file to __objects """
+        classes = {"BaseModel": BaseModel, "City": City, "Place": Place, "Amenity": Amenity,
+                  "Review": Review, "State": State, "User": User}
         if exists(self.__file_path):
             with open(self.__file_path, "r") as file:
                 content = json.load(file)
-                print(content)
+        for key, value in content.items():
+            if value['__class__'] in classes:  # check if class exists within 'classes'
+                cls = classes[value['__class__']]  # grabs correct class (ex. BaseModel, City...)
+                myobj = cls(**value)  # instantiate object based on correct class...
+                                      # passing value dictionary in as kwargs
+                self.__objects[key] = myobj
 
-# we need to figure out how to store ^content into __objects by <class name>.id
-#        self.__objects = {}  # "__objects will store by <class name>.id"
-#        for key, value in content.items():
-#            self.__objects[key] = content[value]
+#  we need to import all the classes...
+#  can't just import because that will cause circular import

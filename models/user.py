@@ -4,8 +4,8 @@
 import json
 import uuid
 from datetime import datetime
-from models import storage
-from models import BaseModel
+from models.engine import file_storage
+from models.base_model import BaseModel
 
 
 class User(BaseModel):
