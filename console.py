@@ -4,7 +4,18 @@
 
 import cmd
 import sys
-# from models import BaseModel
+from models import storage
+from models.engine.file_storage import FileStorage
+from models.amenity import Amenity
+from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.state import State
+from models.review import Review
+from models.user import User
+
+classes = {"BaseModel": BaseModel, "City": City, "Place": Place, "Amenity":
+           Amenity, "Review": Review, "State": State, "User": User}
 
 
 class HBNBCommand(cmd.Cmd):
@@ -42,10 +53,89 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """create method - Creates a new instance of BaseModel,
         saves it (to the JSON file) and prints the id. Ex: $ create BaseModel
+        ex.  $ create BaseModel
         """
-        myobj = BaseModel()
-        myobj.save()
-        print(myobj.id)
+        self.non_interactive_mode()
+        if not arg:
+            print("** class name missing **")
+        elif arg in classes:
+            for key, value in classes.items():
+                if key == arg:  # find correct class name
+                    newobj = classes[key]()  # create instance of correct class
+            storage.save()  # saves it (to the JSON file)
+            print(newobj.id)
+        else:
+            print("** class doesn't exist **")
+
+    def do_show(self, arg):
+        """show method - Prints the string representation of
+        an instance based on the class name and id
+        ex.  $ show BaseModel 1234-1234-1234
+        """
+        #  arg_array:
+        #  [0] - class name
+        #  [1] - instance id
+        self.non_interactive_mode()
+        arg_array = arg.split(" ")
+        if not arg:
+            print("** class name missing **")
+        elif arg_array[0] not in classes:
+            print("** class doesn't exist **")
+        elif arg_array[0] in classes and len(arg_array) == 1:
+            print("** instance id missing **")
+        elif len(arg_array) == 2:
+            key = "{}.{}".format(arg_array[0], arg_array[1])
+            local_objects = storage.all()
+            if key not in local_objects:
+                print("** no instance found **")
+            else:
+                print(local_objects[key])
+
+    def do_destroy(self, arg):
+        """destroy method - Deletes an instance based on the class name and id
+        (change is saved into the JSON file)
+        ex.  $ destroy BaseModel 1234-1234-1234
+        """
+        #  arg_array:
+        #  [0] - class name
+        #  [1] - instance id
+        self.non_interactive_mode()
+        arg_array = arg.split(" ")
+        if not arg:
+            print("** class name missing **")
+        elif arg_array[0] not in classes:
+            print("** class doesn't exist **")
+        elif arg_array[0] in classes and len(arg_array) == 1:
+            print("** instance id missing **")
+        elif len(arg_array) == 2:
+            key = "{}.{}".format(arg_array[0], arg_array[1])
+            local_objects = storage.all()
+            if key not in local_objects:
+                print("** no instance found **")
+            else:
+                del(local_objects[key])
+                storage.save()
+
+    def do_all(self, arg):
+        """all method - Prints all string representation of all instances
+        based or not on the class name.
+        ex.  $ all
+             $ all BaseModel
+        """
+        #  arg_array:
+        #  [0] - class name
+        #  [1] - instance id
+        self.non_interactive_mode()
+        arg_array = arg.split(" ")
+        result_list = []
+        local_objects = storage.all()
+        if not arg or (arg and arg_array[0] in classes):
+            for each in local_objects:
+                result = local_objects[each].__str__()
+                result_list.append(result)
+                print(result_list)
+        elif arg and arg_array[0] not in classes:
+            print("** class doesn't exist **")
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
