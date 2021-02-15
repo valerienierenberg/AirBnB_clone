@@ -7,6 +7,7 @@ import uuid
 from datetime import datetime
 import models
 
+
 class BaseModel:
     """Base Class
     """
@@ -31,7 +32,8 @@ class BaseModel:
         Args: self
         Return: [<class name>] (<self.id>) <self.__dict__>
         """
-        return ("[BaseModel] ({}) {}".format(self.id, self.__dict__))
+        return ("[{}] ({}) {}".format(str(type(self).__name__),
+                                      self.id, self.__dict__))
 # ^ printing id and dictionary in str format
 
     def save(self):
