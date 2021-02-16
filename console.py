@@ -4,6 +4,7 @@
 
 import cmd
 import sys
+import shlex
 from models import storage
 from models.engine.file_storage import FileStorage
 from models.amenity import Amenity
@@ -136,6 +137,45 @@ class HBNBCommand(cmd.Cmd):
                 print(result_list)
         elif arg and arg_array[0] not in classes:
             print("** class doesn't exist **")
+
+    def do_update(self, arg):
+        """update method - Updates an instance based on the class name
+        and id by adding or updating attribute.
+        Saves the change into the JSON file.
+        ex. $ update BaseModel <valid id> email "aibnb@holbertonschool.com" """
+        #  arg_array:
+        #  [0] - class name
+        #  [1] - instance id
+        #  [2] - attribute name
+        #  [3] - attribute value
+        self.non_interactive_mode()
+        arg_array = shlex.split(arg)
+        if not arg:
+            print("** class name missing **")
+            return
+        elif arg_array[0] not in classes:
+            print("** class doesn't exist **")
+            return
+        elif arg_array[0] in classes and len(arg_array) == 1:
+            print("** instance id missing **")
+            return
+        elif len(arg_array) == 2:
+            key = "{}.{}".format(arg_array[0], arg_array[1])
+            local_objects = storage.all()
+            if key not in local_objects:
+                print("** no instance found **")
+                return
+            elif len(arg_array) == 2 and key in local_objects:
+                print("** attribute name missing **")
+                return
+        elif len(arg_array) == 3:
+            print("** value missing **")
+            return
+        key = "{}.{}".format(arg_array[0], arg_array[1])
+        local_objects = storage.all()
+        str(arg_array[3]).replace("\\", "")
+        setattr(local_objects[key], arg_array[2], arg_array[3])
+        storage.save()
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
