@@ -173,7 +173,7 @@ class HBNBCommand(cmd.Cmd):
             return
         key = "{}.{}".format(arg_array[0], arg_array[1])
         local_objects = storage.all()
-        str(arg_array[3]).replace("\\", "")
+#        str(arg_array[3]).replace("\\", "")
         setattr(local_objects[key], arg_array[2], arg_array[3])
         storage.save()
 
