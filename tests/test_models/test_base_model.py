@@ -45,3 +45,16 @@ class TestBase(unittest.TestCase):
                          format(bm1.id, bm1.__dict__))
 #        r2 = Rectangle(2, 3, 2, 2)
 #        self.assertEqual(r2.__str__(), "[Rectangle] (1) 2/2 - 2/3")
+
+    def test_save(self):
+        """ test that saves to JSON file """
+        bm1 = BaseModel()
+        self.assertEqual(bm1.__str__(), "[BaseModel] ({}) {}".
+                         format(bm1.id, bm1.__dict__))
+
+    def test_to_dict(self):
+        """ test that returns a dictionary containing all keys/values of
+        __dict__ of the instance """
+        bm1 = BaseModel()
+        self.assertEqual(bm1.__str__(), "[BaseModel] ({}) {}".
+                         format(bm1.id, bm1.__dict__))
