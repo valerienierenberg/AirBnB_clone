@@ -47,14 +47,17 @@ class TestBase(unittest.TestCase):
 #        self.assertEqual(r2.__str__(), "[Rectangle] (1) 2/2 - 2/3")
 
     def test_save(self):
-        """ test that saves to JSON file """
+        """ tests save method that updates public instance attribute
+        'updated_at' w/ current datetime """
         bm1 = BaseModel()
-        self.assertEqual(bm1.__str__(), "[BaseModel] ({}) {}".
-                         format(bm1.id, bm1.__dict__))
+        original_time = bm1.updated_at
+        bm1.save()
+        updated_time = bm1.updated_at
+        self.assertNotEqual(original_time, updated_time)
 
     def test_to_dict(self):
         """ test that returns a dictionary containing all keys/values of
         __dict__ of the instance """
         bm1 = BaseModel()
-        self.assertEqual(bm1.__str__(), "[BaseModel] ({}) {}".
-                         format(bm1.id, bm1.__dict__))
+        mydict = bm1.to_dict()
+        self.assertIsInstance(mydict, dict)
