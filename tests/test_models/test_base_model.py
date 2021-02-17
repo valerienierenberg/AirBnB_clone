@@ -24,3 +24,22 @@ class TestBase(unittest.TestCase):
         self.assertTrue(BaseModel.__str__.__doc__)
         self.assertTrue(BaseModel.save.__doc__)
         self.assertTrue(BaseModel.to_dict.__doc__)
+
+    def test_init_base_model(self):
+        """ tests __init__ method of BaseModel """
+        myobj = BaseModel()
+        test1 = str(myobj)
+        self.assertTrue(test1[:50], 'models.base_model.BaseModel object at ')
+        self.assertTrue(hasattr(myobj, "__init__"))
+        self.assertTrue(hasattr(myobj, "__str__"))
+        self.assertTrue(hasattr(myobj, "save"))
+        self.assertTrue(hasattr(myobj, "to_dict"))
+#        __objects = storage.all()
+
+    def test_str_(self):
+        """ test that str method for BaseModel class prints correct
+        string format """
+        bm1 = BaseModel()
+        self.assertEqual(bm1.__str__(), "[BaseModel] ({}) {}".format(bm1.id, bm1.__dict__))
+#        r2 = Rectangle(2, 3, 2, 2)
+#        self.assertEqual(r2.__str__(), "[Rectangle] (1) 2/2 - 2/3")
