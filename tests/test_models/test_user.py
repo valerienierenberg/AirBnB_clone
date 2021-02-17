@@ -9,6 +9,7 @@ import os
 from models.base_model import BaseModel
 from models.user import User
 
+
 class TestUser(unittest.TestCase):
     """ Tests User Class """
 
@@ -29,4 +30,3 @@ class TestUser(unittest.TestCase):
         self.assertEqual(myobj.first_name, "")
         self.assertEqual(User.last_name, "")
         self.assertEqual(myobj.last_name, "")
-

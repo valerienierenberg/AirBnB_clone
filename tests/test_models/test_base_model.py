@@ -9,6 +9,7 @@ import os
 from models.base_model import BaseModel
 from models.amenity import Amenity
 
+
 class TestBase(unittest.TestCase):
     """ Tests BaseModel Class """
 
@@ -40,6 +41,7 @@ class TestBase(unittest.TestCase):
         """ test that str method for BaseModel class prints correct
         string format """
         bm1 = BaseModel()
-        self.assertEqual(bm1.__str__(), "[BaseModel] ({}) {}".format(bm1.id, bm1.__dict__))
+        self.assertEqual(bm1.__str__(), "[BaseModel] ({}) {}".
+                         format(bm1.id, bm1.__dict__))
 #        r2 = Rectangle(2, 3, 2, 2)
 #        self.assertEqual(r2.__str__(), "[Rectangle] (1) 2/2 - 2/3")

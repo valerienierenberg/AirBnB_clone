@@ -9,6 +9,7 @@ import os
 from models.base_model import BaseModel
 from models.city import City
 
+
 class TestCity(unittest.TestCase):
     """ Tests City Class """
 

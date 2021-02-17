@@ -184,8 +184,8 @@ class HBNBCommand(cmd.Cmd):
         local_objects = storage.all()
         for each, obj in local_objects.items():
             if each == arg:
-                count += 1
-                print(count)
+                HBNBCommand.count += 1
+                print(HBNBCommand.count)
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

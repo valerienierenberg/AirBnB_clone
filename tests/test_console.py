@@ -8,6 +8,7 @@ import sys
 import os
 from console import HBNBCommand
 
+
 class TestConsole(unittest.TestCase):
     """ Tests Console Class """
 
