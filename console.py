@@ -23,6 +23,7 @@ class HBNBCommand(cmd.Cmd):
     """ HBNBCommand class
     """
     prompt = '(hbnb) '
+    count = 0
 
     def do_quit(self, arg):
         """Quit command to exit the program
@@ -176,6 +177,15 @@ class HBNBCommand(cmd.Cmd):
 #        str(arg_array[3]).replace("\\", "")
         setattr(local_objects[key], arg_array[2], arg_array[3])
         storage.save()
+
+    @staticmethod
+    def count(arg):
+        """ count method to retrieve the number of instances of a class """
+        local_objects = storage.all()
+        for each, obj in local_objects.items():
+            if each == arg:
+                count += 1
+                print(count)
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
