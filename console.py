@@ -47,10 +47,10 @@ class HBNBCommand(cmd.Cmd):
         self.non_interactive_mode()
         pass
 
-    def do_help(self, *args):
-        """ help method """
-        self.non_interactive_mode()
-        cmd.Cmd.do_help(self, *args)
+#    def do_help(self, *args):
+#        """ help method """
+#        self.non_interactive_mode()
+#        cmd.Cmd.do_help(self, *args)
 
     def do_create(self, arg):
         """create method - Creates a new instance of BaseModel,
