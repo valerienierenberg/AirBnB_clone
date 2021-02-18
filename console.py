@@ -178,14 +178,14 @@ class HBNBCommand(cmd.Cmd):
         setattr(local_objects[key], arg_array[2], arg_array[3])
         storage.save()
 
-    @staticmethod
-    def count(arg):
-        """ count method to retrieve the number of instances of a class """
-        local_objects = storage.all()
-        for each, obj in local_objects.items():
-            if each == arg:
-                HBNBCommand.count += 1
-                print(HBNBCommand.count)
+#    @staticmethod
+#    def count(arg):
+#        """ count method to retrieve the number of instances of a class ""#"
+#        local_objects = storage.all()
+#        for each, obj in local_objects.items():
+#            if each == arg:
+#                HBNBCommand.count += 1
+#                print(HBNBCommand.count)
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
