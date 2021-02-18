@@ -17,4 +17,5 @@ class TestConsole(unittest.TestCase):
     def test_console(self):
         """ Tests console method """
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("help show")
+            HBNBCommand().onecmd("create NOPE")
+            self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
