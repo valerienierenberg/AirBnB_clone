@@ -14,11 +14,11 @@ from console import HBNBCommand
 class TestConsole(unittest.TestCase):
     """ Tests Console Class """
 
-#    def test_create(self):
-#        """ Tests console method """
-#        with patch('sys.stdout', new=StringIO()) as f:
-#            HBNBCommand().onecmd("create NOPE")
-#            self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+    def test_create(self):
+        """ Tests console method """
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create NOPE")
+            self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
 
     def test_destroy(self):
         """ Tests console method """
