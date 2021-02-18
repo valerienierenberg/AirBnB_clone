@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Unittests for console class and all its attributes and methods
 """
-from unittest import TestCase
+import unittest
 from unittest.mock import patch
 from io import StringIO
 import pep8
@@ -11,7 +11,7 @@ import os
 from console import HBNBCommand
 
 
-class TestConsole(TestCase):
+class TestConsole(unittest.TestCase):
     """ Tests Console Class """
 
     def test_create(self):
