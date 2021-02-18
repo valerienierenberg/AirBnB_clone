@@ -14,9 +14,28 @@ from console import HBNBCommand
 class TestConsole(unittest.TestCase):
     """ Tests Console Class """
 
-    def test_console(self):
+    def test_create(self):
         """ Tests console method """
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("help show")
-#            HBNBCommand().onecmd("create NOPE")
-#            self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+            HBNBCommand().onecmd("create NOPE")
+            self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+
+    def test_destroy(self):
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy NOPE")
+            self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+
+    def test_show(self):
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("show NOPE")
+            self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+
+    def test_all(self):
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("all NOPE")
+            self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+
+    def test_update(self):
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("update NOPE")
+            self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
