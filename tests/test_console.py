@@ -2,6 +2,8 @@
 """ Unittests for console class and all its attributes and methods
 """
 import unittest
+from unittest.mock import patch
+from io import StringIO
 import pep8
 import json
 import sys
@@ -14,3 +16,5 @@ class TestConsole(unittest.TestCase):
 
     def test_console(self):
         """ Tests console method """
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("help show")
