@@ -64,8 +64,8 @@ class HBNBCommand(cmd.Cmd):
             for key, value in classes.items():
                 if key == arg:  # find correct class name
                     newobj = classes[key]()  # create instance of correct class
-            storage.save()  # saves it (to the JSON file)
-            print(newobj.id)
+                    storage.save()  # saves it (to the JSON file)
+                    print(newobj.id)
         else:
             print("** class doesn't exist **")
 
