@@ -2,10 +2,10 @@
 """ This module contains a class BaseModel that defines
 all common attributes/methods for other classes """
 
-import json
-import uuid
 from datetime import datetime
+import json
 import models
+import uuid
 
 
 class BaseModel:

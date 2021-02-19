@@ -1,15 +1,15 @@
 #!/usr/bin/python3
 """ Unittests for file_storage and all its attributes and methods
 """
-import unittest
-import pep8
 import json
-import sys
-import os
+from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
-from models import storage
+import pep8
+import os
 from os.path import exists
+import sys
+import unittest
 
 
 class TestFileStorage(unittest.TestCase):

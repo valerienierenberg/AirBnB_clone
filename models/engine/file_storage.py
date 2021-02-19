@@ -5,8 +5,8 @@ instances to a JSON file and deserializes JSON file to instances
 
 
 import json
-from os.path import exists
 import models
+from os.path import exists
 
 
 class FileStorage:

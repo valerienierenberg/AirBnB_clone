@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 """ Unittests for console class and all its attributes and methods
 """
+from console import HBNBCommand
+from io import StringIO
+import json
+import os
+import pep8
+import sys
 import unittest
 from unittest.mock import patch
-from io import StringIO
-import pep8
-import json
-import sys
-import os
-from console import HBNBCommand
 
 
 class TestConsole(unittest.TestCase):

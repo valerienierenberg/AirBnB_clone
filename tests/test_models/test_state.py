@@ -2,12 +2,13 @@
 """ Unittests for Amenity class and all its attributes and methods
 """
 import unittest
-import pep8
 import json
-import sys
-import os
 from models.base_model import BaseModel
 from models.state import State
+import os
+import pep8
+import sys
+import unittest
 
 
 class TestState(unittest.TestCase):
