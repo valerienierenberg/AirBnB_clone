@@ -178,6 +178,18 @@ class HBNBCommand(cmd.Cmd):
         setattr(local_objects[key], arg_array[2], arg_array[3])
         storage.save()
 
+    def default(self, arg):
+        """ Override default method """
+        args = arg.split('.')  # split string by . character
+        class_name = args[0]
+        if class_name not in classes:
+            print("** class doesn't exist **")
+        else:  # class name match
+            args = args[1].split('(')
+            cmd = args[0]
+            if cmd == "all":
+                self.do_all(class_name)
+
 #    @staticmethod
 #    def count(arg):
 #        """ count method to retrieve the number of instances of a class ""#"
