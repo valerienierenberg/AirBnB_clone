@@ -37,10 +37,10 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     @staticmethod
-#    def non_interactive_mode():
-#        """ Checks if interactive or noninteractive mode """
-#        if sys.stdin.isatty() is False:
-#            print("")
+    def non_interactive_mode():
+        """ Checks if interactive or noninteractive mode """
+        if sys.stdin.isatty() is False:
+            print("")
 
     def emptyline(self):
         """ an empty line + ENTER does not execute anything """
@@ -57,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
         saves it (to the JSON file) and prints the id. Ex: $ create BaseModel
         ex.  $ create BaseModel
         """
-#        self.non_interactive_mode()
+        self.non_interactive_mode()
         if not arg:
             print("** class name missing **")
         elif arg in classes:
@@ -77,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
         #  arg_array:
         #  [0] - class name
         #  [1] - instance id
-#        self.non_interactive_mode()
+        self.non_interactive_mode()
         arg_array = arg.split(" ")
         if not arg:
             print("** class name missing **")
@@ -101,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
         #  arg_array:
         #  [0] - class name
         #  [1] - instance id
-#        self.non_interactive_mode()
+        self.non_interactive_mode()
         arg_array = arg.split(" ")
         if not arg:
             print("** class name missing **")
@@ -127,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
         #  arg_array:
         #  [0] - class name
         #  [1] - instance id
-#        self.non_interactive_mode()
+        self.non_interactive_mode()
         arg_array = arg.split(" ")
         result_list = []
         local_objects = storage.all()
@@ -149,7 +149,7 @@ class HBNBCommand(cmd.Cmd):
         #  [1] - instance id
         #  [2] - attribute name
         #  [3] - attribute value
-#        self.non_interactive_mode()
+        self.non_interactive_mode()
         arg_array = shlex.split(arg)
         if not arg:
             print("** class name missing **")
