@@ -20,7 +20,8 @@
     border: 1px solid #FF5A5F;
     border-radius: 4px;
     justify-content: flex-start;
-    position: relative; 
+    position: relative;
+    z-index: -1;
 }
 
 .places > article h2 {
